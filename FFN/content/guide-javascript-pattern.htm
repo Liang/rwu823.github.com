@@ -1,0 +1,346 @@
+<p class="color_ex clearfix">
+  <span class="recomm _recoom" >建議</span>
+  <span class="noRecomm" >不建議</span>
+</p>
+
+<div class="rule">
+  <b>變數命名</b>
+  <div class="run_code recomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      // GLOBAL 採用大寫
+      var FFN 
+
+      // Object 字首大寫
+      var Object
+
+      // Function 駝峰式命名
+      function myFunction(){}
+
+      // $ 前缀表示 jQuery 元素
+      var $foo = $('#foo') ;
+
+      // _ 前缀表示 Native DOM 元素
+      var _foo = document.querySelector('#foo') ;
+
+      // is, has 前缀表示 true or false
+      var is_checked ,has_val
+    </textarea>      
+  </div>    
+
+</div>
+
+
+<div class="rule">
+  <b>宣告</b>
+  <div class="run_code noRecomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      // 使用單 var 宣告，並以 ,(逗號) 區隔
+      // 容易遺露,(逗號) ，會變成全域變數 
+      var apple = 'apple' ,
+          width = 300 ,
+          height = 600 ;
+
+      // new 宣告物件
+      var Obj = new Object() ;
+
+      // new 宣告陣列
+      var months = new Array('Jan', 'Feb', 'Mar') ;
+
+      // Function 的宣告方式
+      var checkData = function(){
+
+      }
+
+      // 變數盡可能在宣告時, 就已經決定它的值
+      var arr = ['a', 'b', 'c'] ;
+      var name = '';
+
+      for( var i = 0 , l = arr.length ; i < l ; ++i){
+        name += arr[i] ; // 這時 name 的值才產生變化, 還要追蹤太累
+      }
+
+    </textarea>      
+  </div>
+
+  <div class="run_code recomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      // 使用 var 宣告每個變數
+      // 並盡量把宣告集中在上方，除了用之即棄的變數外 e.g. for( var i ;)
+      var apple = 'apple' ;
+      var width = 300 ;
+      var height = 600 ;      
+
+      // 宣告物件 {}
+      var Obj = {} ;
+
+      // 宣告陣列 []
+      var months = ['Jan', 'Feb', 'Mar'] ;
+
+      // Function 的宣告方式
+      function checkData(){
+
+      }
+
+      // 如果一個變數，需要經過一些過程而產生的結果
+      // 可採用匿名函數 + return 的技巧
+      var arr = ['a', 'b', 'c'] ;
+      var name = (function(str){
+        for( var i = 0 , l = arr.length ; i < l ; ++i) str += arr[i] ;
+        return str ;   
+      })('') ;      
+    </textarea>      
+  </div>    
+
+</div>
+
+<div class="rule">
+  <b>使用單引號</b>
+
+  <div class="run_code noRecomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea> 
+      // 使用雙引號" ， 遇到 HTML 的情況 就要改寫成單引號，並不是我們習以為常的寫法
+      var html = "<a href='//tw.yahoo.com'>Y!奇摩</a>" ;
+
+      // 非標準的 JSON 格式，會讓 JSON.parse() 失效
+      var JSON = "{ 'name' : 'bear' , 'age' : '18' }" ;
+    </textarea>
+  </div>
+
+  <div class="run_code recomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>  
+      // 比較順眼的 HTML 格式          
+      var html = '<a href="//tw.yahoo.com">Y!奇摩</a>' ;
+
+      // 標準的 JSON 格式
+      var JSON = '{ "name" : "bear" , "age" : "18" }' ;
+    </textarea>      
+  </div>    
+
+</div>
+
+<div class="rule">
+  <b>符號 與 運算子 - 保持左右空格</b>
+  <div class="run_code noRecomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      var count=1+2+3;      
+      if( a&&b ) {}
+
+      // 不建議逗號格式
+      var day = ['Monday','Tuesday','Wesday']
+    </textarea>
+  </div>  
+
+  <div class="run_code recomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      var count = 1 + 2 + 3 ;      
+      if( a && b ){}
+
+      // 逗號格式採用：緊連左方再加一空格
+      var day = ['Monday', 'Tuesday', 'Wesday']
+    </textarea>      
+  </div>    
+
+</div>
+
+<div class="rule">
+  <b>小括號( )、中括號[ ]、大括號{ }</b>
+  <div class="run_code noRecomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>      
+    </textarea>
+  </div>  
+
+  <div class="run_code recomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>      
+    </textarea>      
+  </div>    
+
+</div>
+
+<div class="rule">
+  <b>Object Mapping 取代 多個 if 或 switch </b>
+  <div class="run_code noRecomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      // if 或 switch 照成冗長的代碼
+      function getSex( sex ){
+        sex = parseInt( sex , 10 ) 
+        if( sex === 1 ) return '[text_js text_gender_m]' ;          
+        if( sex === 2 ) return '[text_js text_gender_f]' ;
+        if( sex === 3 ) return '[text_js sex_C]';
+        if( sex === 4 ) return '[text_js sex_G]';
+        if( sex === 5 ) return '[text_js sex_LC]' ;  
+        if( sex === 6 ) return '[text_js sex_GC]' ;    
+        if( sex === 7 ) return '[text_js sex_T]' ;
+        }
+      }
+
+      function getSex( sex ){
+        sex = parseInt( sex , 10 ) 
+        switch( sex ) {
+          case 1 : return '[text_js text_gender_m]' ;
+          case 2 : return '[text_js text_gender_f]' ;
+          case 3 : return '[text_js sex_C]';
+          case 4 : return '[text_js sex_G]';
+          case 5 : return '[text_js sex_LC]' ;  
+          case 6 : return '[text_js sex_GC]' ;    
+          case 7 : return '[text_js sex_T]' ;
+        }
+      }      
+    </textarea>
+  </div>  
+
+  <div class="run_code recomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      // Object Mapping 簡潔、優雅、高效
+      function getSex( sex ){  
+        var Map = {
+          1 : '[text_js text_gender_m]' ,
+          2 : '[text_js text_gender_f]' ,
+          3 : '[text_js sex_C]' ,
+          4 : '[text_js sex_G]' ,
+          5 : '[text_js sex_LC]' ,  
+          6 : '[text_js sex_GC]' ,    
+          7 : '[text_js sex_T]' 
+        }
+        return Map[sex] ;
+      }      
+    </textarea>      
+  </div>    
+
+</div>
+
+<div class="rule">
+  <b>if - 書寫規範 </b>
+  <div class="run_code noRecomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      // Javascript 會自行轉換相等 == 的值，有時會造成意外結果
+      if( 1 == '1') //true
+
+      //單行 if 不推薦區塊形寫法
+      if( true ) {
+         fn()
+      }
+
+      // 不推薦的判斷方式
+      if( value !== '') 
+
+      if( is_skip === 1 )
+
+      if( is_skip === 0 )
+
+      // 多行單個 if 
+      if( A ) {
+        if( B ) {
+          // do something
+        }
+      }
+      
+      /* if else */
+
+      // 單區塊 if else
+      if( A ){
+        // code
+      }else {
+        // code
+      }
+      
+      // 縮寫形式不直覺，無法做複雜判斷，並影響閱讀
+      true ? true : false ;
+
+      true && fn() 
+
+      false || fn() 
+    </textarea>
+  </div>
+
+  <div class="run_code recomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      // 強制使用嚴格相等=== 取代 相等 ==
+      if( 1 === '1') // false
+
+      //單行 if 捨棄大括號，並寫成單行
+      if( true ) fn();      
+
+      // 空值或明確的 true false 不需要再做比對的動作 ，減少判斷式的使用，能不用判斷式就不要用 
+      if( value )
+
+      if( is_skip )
+
+      if( !is_skip )
+
+      // 合併多個 if , 在沒有 else 的情況下
+      if( A && B ){
+        // do something
+      }
+
+      // 捨棄大括號 ，並寫成單行
+      if( A ) // code ;
+      else // code ;
+
+      // 正常方式判斷
+      if(true) fn() 
+
+      if(!true) fn() 
+    </textarea>      
+  </div>    
+
+</div>
+
+<div class="rule">
+  <b>時間戳</b>
+
+  <div class="run_code noRecomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      var timestamp = Math.floor( Math.random() * 1000000 ) ;
+    </textarea>
+  </div>
+
+  <div class="run_code recomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      var timestamp = new Date().getTime() ;
+    </textarea>      
+  </div>    
+
+</div>
+
+
+
+
+
+<!--
+
+
+
+    // i 後缀表示 init , 整數
+    var width_i = 300
+
+    // s 後缀表示 string , 字串
+    var name_s = 'bear'
+
+    // a 後缀表示 array , 陣列
+    var fruit_a = ['apple' , 'orange' , 'banana']
+
+    // r 後缀表示 Regular Expression  , 正則
+    var email_r = /[a-zA-Z0-9]@/
+
+    // p 後缀表示 plural 複數的元素集合
+    var $list_p = $('ul>li') ,
+        _list_p = document.querySelectorAll('ul>li') ;
+
+
+
+  -->

@@ -1,0 +1,42 @@
+<div class="rule">
+  <b>參數的設計模式 </b>
+  <div class="run_code noRecomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      // 傳入過多的參數，易混淆
+      function ( name, age, sex, loc, callback ) {
+
+      }
+    </textarea>
+  </div>  
+
+  <div class="run_code recomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      // 改用物件代替
+      function ( opt ){
+
+      }
+      
+    </textarea>      
+  </div>    
+
+</div>
+
+<div class="rule">
+  <b>parseInt() - 強制指定進位數，以免出現意外結果 </b>
+  <div class="run_code noRecomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      parseInt('08') // 0
+    </textarea>
+  </div>  
+
+  <div class="run_code recomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      parseInt('08' , 10) // 8
+    </textarea>      
+  </div>    
+
+</div>

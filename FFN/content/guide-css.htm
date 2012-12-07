@@ -1,0 +1,69 @@
+<p class="color_ex clearfix">
+  <span class="recomm _recoom" >建議</span>
+  <span class="noRecomm" >不建議</span>
+</p>
+
+<div class="rule">
+  <b>命名規則</b>
+  <div class="run_code noRecomm" data-type="text/html">
+    <pre class="cm-s-default"></pre>
+    <textarea>      
+    </textarea>
+  </div>  
+
+  <div class="run_code recomm" data-type="text/html">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+
+    </textarea>      
+  </div>    
+
+</div>
+
+<div class="rule">
+  <b>清除浮動 - 使用 :after</b>
+  <div class="run_code noRecomm" data-type="text/html">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      <style>        
+        .clear { clear:both; }
+      </style>
+
+      <div id="box">
+        <div style="float:left;">
+          float left
+        </div>
+
+        <div style="float:right">
+          float right
+        </div>
+        <div class="clear"></div> <!--多餘的元素-->
+      </div>
+    </textarea>
+  </div>  
+
+  <div class="run_code recomm" data-type="text/html">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      <style>        
+        .after-clear:after { content:'';display:block;clear:both; }
+      </style>
+
+      <div id="box" class="after-clear">
+        <div style="float:left;">
+          float left
+        </div>
+
+        <div style="float:right">
+          float right
+        </div>        
+      </div>
+    </textarea>      
+  </div>    
+
+</div>
+
+
+
+
+

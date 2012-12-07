@@ -1,0 +1,43 @@
+<p class="color_ex clearfix">
+  <span class="recomm _recoom" >建議</span>
+  <span class="noRecomm" >不建議</span>
+</p>
+
+<div class="rule">
+  <b>縮排 - 使用 2 個空格，不使用 Tab </b>
+</div>
+
+<div class="rule">
+  <b>UTF-8 - 文件統一使用UTF-8 no BOM</b>
+</div>
+
+<div class="rule">
+
+  <b>URL 協議 (http/https) - 可省略協議，頁面將繼承 </b>    
+
+  <div class="run_code noRecomm" data-type="application/x-ejs">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+      <style>
+        background:url(http://ffadult.com/image.jpg) ;
+      </style>
+
+      <img src="http://ffadult.com/image.jpg" />
+    </textarea>      
+  </div>
+
+  <div class="run_code recomm" data-type="application/x-ejs">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+      <style>
+        background:url(//ffadult.com/image.jpg) ;
+      </style>
+
+      <img src="//ffadult.com/image.jpg" />
+    </textarea>      
+  </div>
+
+</div>
+

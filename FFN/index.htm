@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<title>FFN - 葵花寶典</title>
+
+<link href="init.css" rel="stylesheet" />
+<script src="./lib/js/sea.js" data-main="./init.js"></script>
+
+
+<header>
+  <h1>FFN 葵花寶典</h1>
+  <div class="_v">v. 2012-09-06</div>
+</header>
+
+<aside id="bookmark">
+  <input id="search" placeholder="Alt + F" />
+
+  <div id="itemGroup">
+
+    <span class="">
+      <b class="_lv1">新手幼幼區</b>      
+      <a class="_lv2">密碼更改與注意事項</a>
+      <a class="_lv2">員工通訊錄</a>      
+    </span>  
+
+    <span>
+      <b class="_lv1 ">Template</b>
+      <a class="_lv2">建立你的 snadbox</a>
+      <a class="_lv2">常用判斷式</a>
+      <a class="_lv2">上傳與更新靜態資源</a>
+      <a class="_lv2">queryString 詳解</a>
+      <a class="_lv2">Admin Tool 使用</a>
+      <a class="_lv2">主機上目錄結構詳解</a>
+      <span>
+        <b class="_lv2 ">開發輔助</b>
+        <a class="_lv3">快速登入</a>
+        <a class="_lv3">快速註冊</a>
+        <a class="_lv3">油猴子</a>
+      </span>
+    </span>    
+
+    <span>
+      <b class="_lv1 " >FontEnd Code Guideline</b>
+      <a class="_lv2" data-content="guide-general" data-api="guide">通用原則</a>
+      <a class="_lv2" data-content="guide-html" data-api="guide">HTML</a>
+      <a class="_lv2" data-content="guide-css" data-api="guide">CSS</a>
+      <span>
+        <b class="_lv2" >Javascript</b>
+        <a class="_lv3" data-content="guide-javascript-pattern" data-api="guide">Pattern</a>
+        <a class="_lv3" data-content="guide-javascript-event" data-api="guide">Event</a>
+        <a class="_lv3" data-content="guide-javascript-function" data-api="guide">Function</a>
+        <a class="_lv3" data-content="guide-javascript-jquery" data-api="guide">jQuery</a>
+      </span>
+    </span>
+  </div>
+
+
+  <div id="searchResult"></div>
+
+</aside>
+
+<div id="content"></div>
+
+<footer></footer>
+
+<script>
+define(function(require) {
+  require('./lib/js/home.js') ;  
+});
+</script>

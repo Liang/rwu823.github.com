@@ -1,0 +1,51 @@
+<div class="rule">
+  <b>事件綁定 與 解除 - 使用 .on / .off</b>
+  <div class="run_code noRecomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      // 無法為事件命名
+      $('#button').click(function(){
+
+      }) ;
+
+      // .bind 無法綁定 ajax 動態產生元素
+      $('#button').bind('click' , function(){
+
+      }) ;
+    </textarea>
+  </div>  
+
+  <div class="run_code recomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      // 使用 .on 綁定 , 如有需要也可命名事件
+      $('#button').on( 'click.show' , function(){
+
+      }) ;
+
+      // 使用 .off 解除綁定 
+      $('#button').off('click.show') ;
+    </textarea>      
+  </div>    
+
+</div>
+
+<div class="rule">
+  <b>指定父元素查找不使用 .find() </b>
+
+  <div class="run_code noRecomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea> 
+      $foo.find('.light') ;
+    </textarea>
+  </div>
+
+  <div class="run_code recomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      // 等價於上式，較簡潔優雅     
+      $('.light' , $foo) ;
+    </textarea>      
+  </div>    
+
+</div>

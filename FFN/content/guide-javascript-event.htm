@@ -1,0 +1,75 @@
+<div class="rule">
+  <b>事件綁定 - 不在 HTML 上</b>
+  <div class="run_code noRecomm" data-type="text/html">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      <!--不應在 HTML 上，表現為行為分離，保持 HTML 結構乾淨-->
+      <div id="button" onclick="fn"></div>      
+    </textarea>
+  </div>  
+
+  <div class="run_code recomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      // 使用 Javascript 綁定      
+      $('#button').on( 'click' , function(e){
+
+      }) ;    
+    </textarea>      
+  </div>    
+
+</div>
+
+
+<div class="rule">
+  <b>取消預設行為與冒泡 - 不使用 return false </b>
+  <div class="run_code noRecomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      // 把 return 釋放出來給真正需要做 return 的事 
+      $('#link').on( 'click' , function(e){
+        return false ;
+      })
+    </textarea>
+  </div>  
+
+  <div class="run_code recomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      $('#link').on( 'click' , function(e){
+        e.preventDefaut() ; // 取消預設行為
+        e.stopPropagation() ; // 停止冒泡
+      })      
+    </textarea>      
+  </div>    
+
+</div>
+
+<div class="rule">
+  <b>永遠給事件處理函數e參數 </b>
+  <div class="run_code noRecomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>
+      // 沒有參數 , 取不到event
+      $('#foo').on('click', function(){
+
+      }) ;
+
+      var function doSubmit(){
+
+      }
+
+      $('#form').on( 'submit' , doSubmit ) ;
+    </textarea>
+  </div>  
+
+  <div class="run_code recomm" data-type="text/javascript">
+    <pre class="cm-s-default"></pre>
+    <textarea>      
+      $('#foo').on('click', function(e){
+        console.log(e) // event Object 
+      }) ;
+    </textarea>      
+  </div>    
+
+</div>
