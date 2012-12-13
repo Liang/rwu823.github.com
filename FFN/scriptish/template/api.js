@@ -1,7 +1,7 @@
 define(function(require , exports , module ){  
   
-  var oo = require('_lib/oo.js') ;
-  var QS = oo.QueryString() ;
+  var kit = require('kit') ;  
+  var QS = kit.QueryString() ;
 
   var API = module.exports = {
 

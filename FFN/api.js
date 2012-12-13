@@ -1,6 +1,6 @@
 define(function(require, exports, module) {  
 
-  var Load = require( '/lib/js/load' ) ;
+  var Load = require( 'load' ) ;
 
   var $content = $('#content') ;
 
@@ -16,7 +16,7 @@ define(function(require, exports, module) {
         res_name : null 
       } , opt )
 
-      Load.codeMirror( function(){
+      Load.codemirror( function(){
 
         $content.html( set.htm ) ;
 

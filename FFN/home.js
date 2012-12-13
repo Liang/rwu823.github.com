@@ -1,7 +1,7 @@
 define(function(require, exports, module) { 
 
   var API = require( '/FFN/api' ) ;  
-  var UI = require( '/lib/js/ui') ;
+  var UI = require( 'ui') ;
 
   var $search = $('#search') ;
   var $itemGroup = $('#itemGroup') ;
