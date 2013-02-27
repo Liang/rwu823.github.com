@@ -1,41 +1,23 @@
 define(function(require, exports, module) {  
-
-  var Load = require( 'load' ) ;
-
-  var $content = $('#content') ;
-
-  var API = module.exports = {  
+  
+  var Api = module.exports = {  
 
     Ajax :  {},
     Res : {},
 
-    guide : function( opt, callback ){
-
-      var set = $.extend( true , {
-        htm : '' ,
-        res_name : null 
-      } , opt )
-
-      Load.codemirror( function(){
-
-        $content.html( set.htm ) ;
-
-        $('div.run_code' , $content ).each(function(){
-
-          var $this = $(this) ;
-          var el_pre = $('>pre' , $this )[0] ;
-
-          var _code = $('>textarea' , $this ).val().replace(/^      /gm , '') ;
-          var _type = $this.data('type') ;
-
-          CodeMirror.runMode( _code, _type, el_pre ) ;
-        }) ;
-
-        $.isFunction( callback ) && callback() ;
-
-      } ) ;
-
-    },
+    content : function( file_name, callback){      
+      Api.Ajax[file_name] = $.ajax({
+        url : '/FFN/content/' + file_name + '.htm',
+        dataType : 'HTML',
+        cache : false,
+        success : function(htm){
+          Api.Res.Content = Api.Res.Content || {} ;
+          Api.Res.Content[file_name] = htm ;
+          
+          $.isFunction(callback) && callback(htm) ;
+        }
+      })
+    }, 
 
     init : function(){      
 
@@ -44,6 +26,6 @@ define(function(require, exports, module) {
 
   }
 
-  API.init() ;
+  Api.init() ;
 
 }) ;

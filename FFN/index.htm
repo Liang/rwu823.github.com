@@ -6,11 +6,12 @@
 
 <header>
   <h1>FFN 葵花寶典</h1>
-  <div class="_v">v. 2012-09-06</div>
+  <div class="_v">v. 2013/02/06</div>
 </header>
 
 <aside id="bookmark">
-  <input id="search" placeholder="Alt + F" />
+  
+  <input id="search" placeholder="Alt + F" ng-model="search" />
 
   <div id="itemGroup">
 
@@ -22,7 +23,7 @@
 
     <span>
       <b class="_lv1 ">Template</b>
-      <a class="_lv2">建立你的 snadbox</a>
+      <a class="_lv2">建立你的 sandbox</a>
       <a class="_lv2">常用判斷式</a>
       <a class="_lv2">上傳與更新靜態資源</a>
       <a class="_lv2">queryString 詳解</a>
@@ -37,30 +38,31 @@
     </span>    
 
     <span>
-      <b class="_lv1 " >FontEnd Code Guideline</b>
-      <a class="_lv2" data-content="guide-general" data-api="guide">通用原則</a>
-      <a class="_lv2" data-content="guide-html" data-api="guide">HTML</a>
-      <a class="_lv2" data-content="guide-css" data-api="guide">CSS</a>
+      <b class="_lv1 " >FrontEnd Code Guideline</b>
+      <a class="_lv2" href="#/guide-general">通用原則</a>
+      <a class="_lv2" href="#/guide-html">HTML</a>
+      <a class="_lv2" href="#/guide-css">CSS</a>
       <span>
         <b class="_lv2" >Javascript</b>
-        <a class="_lv3" data-content="guide-javascript-pattern" data-api="guide">Pattern</a>
-        <a class="_lv3" data-content="guide-javascript-event" data-api="guide">Event</a>
-        <a class="_lv3" data-content="guide-javascript-function" data-api="guide">Function</a>
-        <a class="_lv3" data-content="guide-javascript-jquery" data-api="guide">jQuery</a>
+        <a class="_lv3" href="#/guide-javascript-pattern">Pattern</a>
+        <a class="_lv3" href="#/guide-javascript-event">Event</a>
+        <a class="_lv3" href="#/guide-javascript-function">Function</a>
+        <a class="_lv3" href="#/guide-javascript-jquery">jQuery</a>
       </span>
     </span>
   </div>
 
-
-  <div id="searchResult"></div>
+  <div id="searchResult" data-choose="-1"></div>
 
 </aside>
 
-<div id="content"></div>
+<div id="content" ng-app="LoadHtm" ng-controller="C" ng-cloak scroller-view>
+  <div scroller-scroll></div>
+  <div scroller-max>    
+    <div id="content_htm" ng-bind-html-unsafe="htm"></div>  
+  </div>
+</div>
 
 <footer></footer>
 
-<script src="/lib/js/sea.js" data-main="config.js"></script>
-<script>
-seajs.use('/FFN/home') ;
-</script>
+<script src="/lib/js/sea.js" data-main="/FFN/home"></script>

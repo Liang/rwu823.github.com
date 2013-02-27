@@ -1,65 +1,132 @@
-define(function(require , exports , module ){  
+define(function(require){  
   
-  var kit = require('kit') ;  
-  var QS = kit.QueryString() ;
+  var Kit = require('lib/js/kit') ;
+  var QS = Kit.queryString() ;
 
-  var API = module.exports = {
+  var Api = {
 
-    Ajax : {} ,
-    Respon : {} ,
-    Ajaxing : {} ,
+    Ajax : {},
+    Res : {},
 
-    commit : function (){
-      
+    defaultData : {
+      site : QS.site,
+      lang : QS.lang,
+      keyword : QS.keyword,
+      root : 1 
     } ,
 
-    push : function ( data , callback ){
-      var _data = $.extend( true ,{
-        
-      } , data ) ;
+    publish :function( data, callback){
 
-      API.Ajaxing.push = 1 ;
-      API.Ajax.push = $.ajax({
-        type : 'GET' ,
-        url : 'pushtolive.cgi?version=devel&'+ QS.site +'-'+ QS.lang +'=1&local=1&submit=1&keyword=' + QS.keyword  + '&compiled=-1' ,      
-        success : function ( respon ){
-          API.Respon.push = respon ;
-          API.Ajaxing.push = 0 ;
-          if( $.isFunction( callback ) ) callback( respon ) ;
+      var set_data = {
+        keyword : QS.keyword,
+        original_site : QS.site,
+        original_lang : QS.lang,
+        sbumit : 'Publish',
+        type : 'main',
+        version : 'devel',
+        Lang : ['british', 'chinese', 'dutch','english','french','gb','german','italian', 'japanese', 'korean', 'portuguese', 'romanian', 'russian', 'spanish', 'swedish', 'tagalog'],
+        Site : ['bc', 'bdsm', 'bondage', 'cams', 'cff', 'dammo', 'danni', 'ff', 'ffadult', 'ffall', 'ffc', 'ffd', 'ffe', 'fff', 'ffgay', 'ffi', 'ffitaly', 'ffj', 'ffk', 'ffp', 'ffsenior', 'ffz', 'gd', 'getiton', 'hb', 'jc', 'lfc', 'mm', 'out', 'payg', 'ph', 'pm', 'slim', 'ss', 'xh']
+      } ;
+
+      set_data[ QS.site + '-british'] = 'on' ;
+      set_data[ QS.site + '-chinese'] = 'on' ;
+      set_data[ QS.site + '-dutch'] = 'on' ;
+      set_data[ QS.site + '-english'] = 'on' ;
+      set_data[ QS.site + '-french'] = 'on' ;
+      set_data[ QS.site + '-german'] = 'on' ;
+      set_data[ QS.site + '-italian'] = 'on' ;
+      set_data[ QS.site + '-japanese'] = 'on' ;
+      set_data[ QS.site + '-korean'] = 'on' ;
+      set_data[ QS.site + '-portuguese'] = 'on' ;
+      set_data[ QS.site + '-spanish'] = 'on' ;
+      set_data[ QS.site + '-swedish'] = 'on' ;
+      set_data[ QS.site + '-tagalog'] = 'on' ;
+
+      $.extend(true, set_data, data) ;
+
+      Api.Ajax.Publish = $.ajax({
+        url : 'pushtolive.cgi?site=' + QS.site + '&lang=' + QS.lang + '&keyword=' + QS.keyword,
+        data : set_data,
+        success : function ( res ){
+          Api.Res.Publish = res ;
+          if( $.isFunction( callback ) ) callback( res ) ;
         }
       })
-    } ,
+    },
 
-    save : function ( data , callback ){
-      var _data = $.extend( true , {
-        action : 'Save local' ,
-        site : QS.site ,
-        lang : QS.lang ,
-        keyword : QS.keyword ,
-        root : 1         
-      } , data ) ;
+    commit : function ( data, callback ){
+      data = $.extend({
+        commitaction : 'Commit to DB',
+        commmit_comment : data.comment,
+        data : data.code
+      }, Api.defaultData )
 
-      API.Ajaxing.save = 1 ;
-      API.Ajax.save = $.ajax({
-        data : _data ,
-        success : function ( respon ){
-          API.Respon.save = respon ;
-          API.Ajaxing.save = 0 ;
-          if( $.isFunction( callback ) ) callback( respon ) ;
+      Api.Ajax.Commit = $.ajax({
+        data : data,
+        success : function ( res ){
+          Api.Res.Commit = res ;
+          if( $.isFunction( callback ) ) callback( res ) ;
         }
       })
-    } ,
+    },
+
+    save : function ( data, callback ){
+      data = $.extend({
+        action : 'Save local',  
+        data : data.code 
+      }, Api.defaultData )
+
+      Api.Ajax.Save = $.ajax({
+        data : data,
+        success : function ( res ){
+          Api.Res.Save = res ;
+          if( $.isFunction( callback ) ) callback( res ) ;
+        }
+      })
+    },
+
+    pushSandbox : function( data, callback ){
+      var setData = $.extend({
+        site : QS.site,
+        lang : QS.lang,
+        keyword : QS.keyword
+      }, data )
+
+      Api.Ajax.PushSandbox = $.ajax({
+        type : 'GET',
+        url : 'pushtolive.cgi?version=devel&'+ setData.site +'-'+ setData.lang +'=1&local=1&submit=1&keyword=' + setData.keyword  + '&compiled=-1',
+        success : function ( res ){
+          Api.Res.PushSandbox = res ;
+          if( $.isFunction( callback ) ) callback( res ) ;
+        }
+      })  
+    }, 
+
+    clear : function( callback ){
+      data = $.extend({
+        action : 'Clear local'
+      }, Api.defaultData )
+
+      Api.Ajax.Clear = $.ajax({
+        data : data,
+        success : function( res){
+          Api.Res.Clear = res ;
+          if( $.isFunction( callback ) ) callback( res ) ;
+        }
+      })
+    },
 
     init : function (){      
-
       $.ajaxSetup({
-        url : 'editor.cgi' ,
-        type : 'POST' 
+        url : 'editor.cgi',
+        type : 'POST'
       })
 
     }
   }
 
-  API.init() ;
+  Api.init() ;
+
+  return Api ;
 
 }) ;

@@ -1,0 +1,65 @@
+<!doctype html>
+<meta charset="UTF-8" />
+<title>Chat Test</title>
+
+<style>
+  p, ul, body {margin:0;padding:0;}
+  ul { list-style:none; }
+  body { background:#eee;font:12px/1.2 arial; }
+  html { overflow-y:scroll; }
+  #main { width:800px;margin:0 auto; }
+  #main:after { content:'';display:block;clear:both; }
+
+  #online_lists { width:20%;position:fixed;top:0;bottom:0;left:0;width:180px;background:#fff; }
+  #online_lists > p { text-align:center; }
+  #online_lists li { border-bottom:1px solid #eee;padding:8px 10px; }
+  #online_lists li:before { content:'';display:inline-block;width:7px;height:7px;background:#4DB849;vertical-align:2px;border-radius:20px; }
+
+  #output { color:#888;height:600px;overflow-y:scroll;padding:20px 0;font-size:16px; }
+
+  #output > ._chat { position:relative;margin-bottom:20px;overflow:hidden; }
+  #output > ._chat > ._name { float:left;text-align:right;width:80px;margin-right:20px;text-overflow:ellipsis; }
+  #output > ._chat > ._name._self {color:#36c; }
+  #output > ._chat > ._htm{ float:left;width:570px;margin-right:10px;min-height:1px; }
+  #output > ._chat > ._time { float:left; }
+
+  #input { width:100%;height:120px;border:1px solid #ccc;clear:both;color:#888; }
+  /*#input[placeholder] { color:#ccc;font-size:12px; }*/
+</style>
+
+<div id="online_lists">
+  <p>online</p>
+  <ul id="load-online">
+    <script id="tpl-online" type="tpl">
+      {{#each onlines}}
+        <li>
+          {{#if name}}
+            {{name}}
+          {{else}}
+            {{ip}}
+          {{/if}}
+        </li>
+      {{/each}}
+    </script>
+  </ul>
+</div>
+<div id="main">
+  <div id="output">
+    <script id="tpl-chat" type="tpl">          
+      <div class="_chat">
+        <b class="_name {{#if self}}_self{{/if}}">{{#if name}}{{name}}{{else}}{{ip_sender}}{{/if}}</b>
+        <div class="_htm">{{htmMsg msg}}</div>
+        <div class="_time">{{time}}</div>
+      </div>      
+    </script>
+
+
+  </div>
+  <textarea id="input" placeholder="[Enter]送出 / [Shift+Enter]換行"></textarea>
+</div>
+
+
+<script src="/lib/js/sea.js" data-main="config.js"></script>
+<script>
+seajs.use('/chat/index') ;
+</script>
